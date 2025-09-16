@@ -1,0 +1,23 @@
+CLIENTE 
+|___Faz Login
+|____Vê livros cadastrados
+|_____Adiciona livro aos favoritos
+|______Remove livro dos favoritos
+|_______Marca quando vai pegar o Livro na livraria física
+|________Cancela quando vai pegar o Livro na livraria física
+
+VENDEDOR
+|__Faz login
+|___Ve livros cadastrados
+|____Cadastra Livros
+|_____Deleta livros
+|______Altera livros
+
+
+lista de livros deve conter as seguintes informações
+
+Nome
+Editora
+Ano
+Idioma
+Preço
