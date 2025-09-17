@@ -12,6 +12,8 @@ VENDEDOR
 |____Cadastra Livros
 |_____Deleta livros
 |______Altera livros
+|_______Cancela Pedido de livro
+|________Vê informações de quem alugou e quando
 
 
 lista de livros deve conter as seguintes informações
