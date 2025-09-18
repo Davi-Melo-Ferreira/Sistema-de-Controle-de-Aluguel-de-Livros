@@ -4,16 +4,28 @@ DEFAULT COLLATE utf8mb4_unicode_ci;
 
 USE davi_livraria_db;
 
-CREATE TABLE cliente (
+CREATE TABLE IF NOT EXISTS cliente (
 	id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL,
     senha VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE vendedor (
+CREATE TABLE IF NOT EXISTS vendedor (
 	id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL,
     senha VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS livro (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    editora VARCHAR(100) NOT NULL,
+    ano VARCHAR(4) NOT NULL,
+    idioma VARCHAR(100) NOT NULL,
+    autor VARCHAR(100) NOT NULL,
+    alugado TINYINT(1) DEFAULT 0,
+    nome_alugado VARCHAR(100),
+    alugado_em TIMESTAMP NULL
 );
