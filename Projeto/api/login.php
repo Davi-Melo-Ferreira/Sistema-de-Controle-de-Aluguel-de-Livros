@@ -8,15 +8,27 @@
 <body>
     <h2>Login</h2>
     <main>
-        <form action="login.php" method="POST">
-            <label for="usuario">Usuário:</label>
-            <input type="text" id="usuario" name="usuario" required draggable="true">
+        <form method="POST">
+            <label for="usuario">Usuário:</label><br>
+            <input type="text" id="usuario" name="usuario" required><br>
 
-            <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha" required>
+            <label for="senha">Senha:</label><br>
+            <input type="password" id="senha" name="senha" required><br>
 
-            <input type="submit" value="Entrar">
+            <input type="submit" name="enviar" value="Entrar"><br>
         </form>
+        <?php
+        session_start();
+        if (isset($_SESSION['usuario'])){
+            header("Location: ../public/index.php");
+        }
+        if (isset($_POST['enviar'])){
+            $_SESSION['usuario'] = $_POST['usuario'];
+            $_SESSION['senha'] = $_POST['senha'];
+            header("Location: verifica.php");
+        }
+
+        ?>
     </main>
 </body>
 </html>
