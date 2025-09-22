@@ -2,7 +2,7 @@
     include "../conexao/conexao.php";
     header('Content-Type: application/json');
 
-    $stmt = $conn->prepare("SELECT * FROM livro");
+    $stmt = $conn->prepare("SELECT * FROM livros");
     $stmt->execute();
     $result = $stmt->get_result();
 

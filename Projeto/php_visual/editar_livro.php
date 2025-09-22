@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    <h1>Adicionar Livro</h1>
-
+    <h1>Editar Livro</h1>
     <main>
         <!-- Formulário para inserir registro na tabela de livros -->
-        <form id="bookForm" method="POST" action="../api/adicionar.php" novalidate>
+        <form id="bookForm" method="POST" action="../api/editar.php" novalidate>
             <!-- nome -->
             <div>
                 <label for="nome">Nome</label>

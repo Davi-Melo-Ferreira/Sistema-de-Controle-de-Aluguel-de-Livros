@@ -8,7 +8,5 @@ $conn = new mysqli($host, $user, $pass, $db);
 
 if ($conn->connect_errno){
     die("Erro na conexão" . mysqli_connect_error());
-} else{
-    echo "Banco de dados carregado com sucesso";
 }
 ?>

@@ -27,7 +27,6 @@
             $_SESSION['senha'] = $_POST['senha'];
             header("Location: verifica.php");
         }
-
         ?>
     </main>
 </body>

@@ -18,10 +18,6 @@ if (!isset($_SESSION['usuario'])){
 
         <input type="submit" name="listar" value="Listar">
 
-        <input type="submit" name="editar" value="Editar">
-
-        <input type="submit" name="deletar" value="Deletar">
-
         <input type="submit" name="sair" value="Sair">
     </form>
     <?php
@@ -30,16 +26,10 @@ if (!isset($_SESSION['usuario'])){
         header("Location: ../api/login.php");
     }
     if (isset($_POST['adicionar'])){
-        header("Location: ../api/adicionar.php");
+        header("Location: ../php_visual/cadastrar_livro.php");
     }
     if (isset($_POST['listar'])){
         header("Location: ../php_visual/listar_livros.php");
-    }
-    if (isset($_POST['editar'])){
-        header("Location: ../api/editar.php");
-    }
-    if (isset($_POST['deletar'])){
-        header("Location: ../api/deletar.php");
     }
     ?>
 </body>
