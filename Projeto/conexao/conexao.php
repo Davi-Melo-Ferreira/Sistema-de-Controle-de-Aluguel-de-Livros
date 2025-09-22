@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
 $user = "root";
-$pass = "1234";
+$pass = "";
 $db = "davi_livraria_db";
 
 $conn = new mysqli($host, $user, $pass, $db);
