@@ -3,56 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Editar Livro</title>
 </head>
 <body>
     <h1>Editar Livro</h1>
     <main>
-        <!-- Formulário para inserir registro na tabela de livros -->
+        <div id="dadosLivro">
+            <h3>Dados atuais do livro:</h3>
+            <a id="resultado" name="resultado">
+            <?php
+            if (isset($_GET['id'])) {
+                $id = intval($_GET['id']);
+                include_once("../conexao/conexao.php");
+                $sql = "SELECT * FROM livros WHERE id_livro = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("i", $id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                if ($livro = $result->fetch_assoc()) {
+                    echo " - Nome: ".$livro['nome_livro'];
+                    echo " - Valor: R$".$livro['valor_livro'];
+                    echo " - Editora: ".$livro['editora_livro'];
+                    echo " - Ano: ".$livro['ano_livro'];
+                    echo " - Idioma: ".$livro['idioma_livro'];
+                    echo " - Autor: ".$livro['autor_livro'];
+                    echo " - Alugado: ".($livro['alugado_livro'] ? 'Sim' : 'Não');
+                } else {
+                    echo "Livro não encontrado.";
+                }
+                $stmt->close();
+                $conn->close();
+            } else {
+                echo "ID do livro não informado.";
+            }
+            ?>
+            </a>
+        <!-- Formulário para editar registro na tabela de livros -->
         <form id="bookForm" method="POST" action="../api/editar.php" novalidate>
-            <!-- nome -->
             <div>
-                <label for="nome">Nome</label>
-                <input id="nome" name="nome" type="text" required />
+                <label for="campo">Campo</label>
+                <input id="campo" name="campo" type="text" required />
+                <select name="nome_opcao" id="nome_opcao">
+                    <option value="nome">Nome</option>
+                    <option value="valor">Valor</option>
+                    <option value="editora">Editora</option>
+                    <option value="ano">Ano</option>
+                    <option value="idioma">Idioma</option>
+                    <option value="autor">Autor</option>
+                </select>
             </div>
-
-            <!-- valor -->
             <div>
-                <label for="valor">Valor</label>
-                <input id="valor" name="valor" type="number" step="0.01" required />
-
-            </div>
-
-            <!-- editora -->
-            <div>
-                <label for="editora">Editora</label>
-                <input id="editora" name="editora" type="text" required />
-            </div>
-
-            <!-- ano -->
-            <div>
-                <label for="ano">Ano</label>
-                <input id="ano" name="ano" type="number" maxlength="4" required />
-            </div>
-
-            <!-- idioma -->
-            <div>
-                <label for="idioma">Idioma</label>
-                <input id="idioma" name="idioma" type="text" required />
-            </div>
-
-            <!-- autor -->
-            <div>
-                <label for="autor">Autor</label>
-                <input id="autor" name="autor" type="text" required />
-            </div>
-            
-            <div>
-                <button type="submit" name="cadastrar">Salvar</button>
+                <button type="submit" name="editar">Salvar</button>
             </div>
         </form>
         <button type="button" onclick="window.location.href='../public/index.php'">Voltar</button>
-
     </main>
 </body>
 </html>

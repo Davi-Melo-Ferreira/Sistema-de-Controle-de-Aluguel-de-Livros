@@ -7,7 +7,7 @@
 <body>
   <h1>Livros cadastrados</h1>
   <ul id="lista-livros"></ul>
-        <button type="button" onclick="window.location.href='../public/index.php'">Voltar</button>
+  <button type="button" onclick="window.location.href='../public/index.php'">Voltar</button>
 
   <script>
     fetch("../api/listar.php")
@@ -29,8 +29,8 @@
           const btnEditar = document.createElement("button");
           btnEditar.textContent = "Editar";
           btnEditar.onclick = () => {
-            if (confirm("Tem certeza que deseja deletar este livro?")) {
-              window.location.href = `../php_visual/editar_livro.php?id=${livro.id}`;
+            if (confirm("Tem certeza que deseja editar este livro?")) {
+              window.location.href = `editar_livro.php?id=${livro.id_livro}`;
             }
           };
 
@@ -44,8 +44,19 @@
                 headers: {
                   "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ id: livro.id })
+                body: JSON.stringify({ id: livro.id_livro })
               })
+              .then(response => response.json())
+              .then(result => {
+                if (result.success) {
+                  li.remove();
+                } else {
+                  alert("Erro ao deletar livro: " + (result.message || "Tente novamente."));
+                }
+              })
+              .catch(() => {
+                alert("Erro de conexão ao deletar livro.");
+              });
             }
           };
 
@@ -54,7 +65,7 @@
           btnAlugar.textContent = "Alugar";
           btnAlugar.onclick = () => {
             if (confirm("Tem certeza que deseja alugar este livro?")) {
-              window.location.href = `../api/deletar.php?id=${livro.id}`;
+              window.location.href = `../api/alugar.php?id=${livro.id}`;
             }
           };
 
