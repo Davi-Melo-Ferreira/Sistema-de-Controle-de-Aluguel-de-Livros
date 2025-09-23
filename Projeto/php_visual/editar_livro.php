@@ -12,15 +12,16 @@
             <h3>Dados atuais do livro:</h3>
             <a id="resultado" name="resultado">
             <?php
+            include("../conexao/conexao.php");
             if (isset($_GET['id'])) {
                 $id = intval($_GET['id']);
-                include_once("../conexao/conexao.php");
                 $sql = "SELECT * FROM livros WHERE id_livro = ?";
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("i", $id);
                 $stmt->execute();
                 $result = $stmt->get_result();
                 if ($livro = $result->fetch_assoc()) {
+                    echo " - Id: ".$livro['id_livro'];
                     echo " - Nome: ".$livro['nome_livro'];
                     echo " - Valor: R$".$livro['valor_livro'];
                     echo " - Editora: ".$livro['editora_livro'];
@@ -41,7 +42,7 @@
         <!-- Formulário para editar registro na tabela de livros -->
         <form id="bookForm" method="POST" action="../api/editar.php" novalidate>
             <div>
-                <label for="campo">Campo</label>
+                <label for="campo">Campo:</label>
                 <input id="campo" name="campo" type="text" required />
                 <select name="nome_opcao" id="nome_opcao">
                     <option value="nome">Nome</option>
@@ -53,7 +54,7 @@
                 </select>
             </div>
             <div>
-                <button type="submit" name="editar">Salvar</button>
+                <button type="submit" name="editar" value="<?php echo isset($id) ? $id : ''; ?>">Editar</button>
             </div>
         </form>
         <button type="button" onclick="window.location.href='../public/index.php'">Voltar</button>

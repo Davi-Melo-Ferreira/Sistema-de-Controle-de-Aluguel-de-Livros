@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS clientes (
     endereco_cliente VARCHAR(100) NOT  NULL
 );
 
-CREATE TABLE IF NOT EXISTS vendedor (
+CREATE TABLE IF NOT EXISTS funcionarios (
 	id_vendedor INT AUTO_INCREMENT PRIMARY KEY,
     nome_vendedor VARCHAR(100) NOT NULL,
     email_vendedor VARCHAR(100) NOT NULL UNIQUE,

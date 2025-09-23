@@ -16,7 +16,11 @@
         const lista = document.getElementById("lista-livros");
         data.forEach(livro => {
           const li = document.createElement("li");
+          if (livro.alugado_livro == 1){
+              li.style.textDecoration = 'line-through';
+          }
           li.textContent = `
+          - ID: ${livro.id_livro}
           - Nome: ${livro.nome_livro}
           - Valor: R$${livro.valor_livro}
           - Editora: ${livro.editora_livro}
@@ -24,6 +28,22 @@
           - Idioma: ${livro.idioma_livro}
           - Autor: ${livro.autor_livro}
           - Alugado: ${livro.alugado_livro ? 'Sim' : 'Não'}`;
+
+
+          // Botão Alugar
+          const btnAlugar = document.createElement("button");
+          if (livro.alugado_livro == 1){
+              btnAlugar.textContent = "Indisponível";
+              btnAlugar.setAttribute('type', 'button');
+          } else{
+              btnAlugar.textContent = "Alugar";
+              btnAlugar.onclick = () => {
+                if (confirm("Tem certeza que deseja alugar este livro?")) {
+                  window.location.href = `alugar_livro.php?id=${livro.id_livro}`;
+                }
+              };
+          }
+          
 
           // Botão Editar
           const btnEditar = document.createElement("button");
@@ -57,15 +77,6 @@
               .catch(() => {
                 alert("Erro de conexão ao deletar livro.");
               });
-            }
-          };
-
-          // Botão Alugar
-          const btnAlugar = document.createElement("button");
-          btnAlugar.textContent = "Alugar";
-          btnAlugar.onclick = () => {
-            if (confirm("Tem certeza que deseja alugar este livro?")) {
-              window.location.href = `../api/alugar.php?id=${livro.id}`;
             }
           };
 

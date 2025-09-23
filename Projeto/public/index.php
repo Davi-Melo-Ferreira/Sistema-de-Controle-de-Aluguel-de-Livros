@@ -16,7 +16,9 @@ if (!isset($_SESSION['usuario'])){
     <form method="POST">
         <input type="submit" name="adicionar" value="Adicionar">
 
-        <input type="submit" name="listar" value="Listar">
+        <input type="submit" name="listar" value="Livros">
+
+        <input type="submit" name="alugar" value="Alugueis">
 
         <input type="submit" name="sair" value="Sair">
     </form>
@@ -30,6 +32,9 @@ if (!isset($_SESSION['usuario'])){
     }
     if (isset($_POST['listar'])){
         header("Location: ../php_visual/listar_livros.php");
+    }
+    if (isset($_POST['alugar'])){
+        header("Location: ../php_visual/alugar_livro.php");
     }
     ?>
 </body>
