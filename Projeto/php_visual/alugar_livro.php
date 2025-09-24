@@ -9,43 +9,46 @@
 
     <main>
         <!-- Formulário para inserir registro na tabela de livros -->
-        <form id="bookForm" method="POST" action="../api/adicionar.php" novalidate>
+        <form id="bookForm" method="POST" action="../api/alugar.php" novalidate>
+            <label for="campo">Cliente:</label>
+                <select name="cliente_opcao" id="cliente_opcao"></select>
+                <script>
+                    fetch("../api/usuarios.php")
+                    .then(response => response.json())
+                    .then(data => {
+                        const selecao = document.getElementById("cliente_opcao");
+                        data.forEach(cliente => {
+                        const opcao = document.createElement("option");
+                            opcao.textContent = `Nome: ${cliente.nome_cliente}`;
+                            selecao.appendChild(opcao);
+                        });
+                    });
+                </script>
+
             <label for="campo">Livro:</label>
-                <select name="nome_opcao" id="nome_opcao">
-                    <option value="nome">Nome</option>
-                    <option value="valor">Valor</option>
-                    <option value="editora">Editora</option>
-                    <option value="ano">Ano</option>
-                    <option value="idioma">Idioma</option>
-                    <option value="autor">Autor</option>
-                </select>
+                <select name="livro_opcao" id="livro_opcao"></select>
             <script>
                 fetch("../api/listar.php")
                 .then(response => response.json())
                 .then(data => {
-                    const lista = document.getElementById("lista-livros");
+                    const selecao = document.getElementById("livro_opcao");
                     data.forEach(livro => {
-                    const li = document.createElement("li");
-                    if (livro.alugado_livro == 1){
-                        li.style.textDecoration = 'line-through';
+                    const opcao = document.createElement("option");
+                    if (livro.alugado_livro == 0){
+                        opcao.textContent = `Nome: ${livro.nome_livro}`;
+                        selecao.appendChild(opcao);
                     }
-                    li.textContent = `
-                    - ID: ${livro.id_livro}
-                    - Nome: ${livro.nome_livro}
-                    - Valor: R$${livro.valor_livro}
-                    - Editora: ${livro.editora_livro}
-                    - Ano: ${livro.ano_livro}
-                    - Idioma: ${livro.idioma_livro}
-                    - Autor: ${livro.autor_livro}
-                    - Alugado: ${livro.alugado_livro ? 'Sim' : 'Não'}`;
-                    lista.appendChild(li);
+                    
                     });
                 });
             </script>
+            <input type="submit" value="Alugar Livro" name="alugar_livro">
             
         </form>
         <button type="button" onclick="window.location.href='../public/index.php'">Voltar</button>
 
+        <h2>Registros</h2>
+        
     </main>
 </body>
 </html>

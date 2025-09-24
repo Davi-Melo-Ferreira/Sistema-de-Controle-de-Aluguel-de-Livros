@@ -5,7 +5,51 @@
   <title>Lista de Livros</title>
 </head>
 <body>
-  <h1>Livros cadastrados</h1>
+  <h1>Livros</h1>
+  <!-- Formulário para inserir registro na tabela de livros -->
+  <form id="bookForm" method="POST" action="../api/adicionar.php" novalidate>
+    <h3>Adicionar Livro</h3>
+      <!-- nome -->
+      <div>
+          <label for="nome">Nome</label>
+          <input id="nome" name="nome" type="text" required />
+      </div>
+
+      <!-- valor -->
+      <div>
+          <label for="valor">Valor</label>
+          <input id="valor" name="valor" type="number" step="0.01" required />
+
+      </div>
+
+      <!-- editora -->
+      <div>
+          <label for="editora">Editora</label>
+          <input id="editora" name="editora" type="text" required />
+      </div>
+
+      <!-- ano -->
+      <div>
+          <label for="ano">Ano</label>
+          <input id="ano" name="ano" type="number" maxlength="4" required />
+      </div>
+
+      <!-- idioma -->
+      <div>
+          <label for="idioma">Idioma</label>
+          <input id="idioma" name="idioma" type="text" required />
+      </div>
+
+      <!-- autor -->
+      <div>
+          <label for="autor">Autor</label>
+          <input id="autor" name="autor" type="text" required />
+      </div>
+      
+      <div id="botao">
+          <button type="submit" name="cadastrar">Adicionar</button>
+      </div>
+  </form>
   <ul id="lista-livros"></ul>
   <button type="button" onclick="window.location.href='../public/index.php'">Voltar</button>
 

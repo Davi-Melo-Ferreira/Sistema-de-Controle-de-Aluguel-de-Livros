@@ -1,3 +1,16 @@
+-- <?php
+--     include "../conexao/conexao.php";
+--     header('Content-Type: application/json');
+
+--     $stmt = $conn->prepare("
+--     SELECT * FROM livros
+--     ");
+--     $stmt->execute();
+
+--     $stmt->close();
+--     $conn->close();
+-- ?>
+
 -- DROP database davi_livraria_db;
 
 CREATE DATABASE IF NOT EXISTS davi_livraria_db
@@ -14,11 +27,14 @@ CREATE TABLE IF NOT EXISTS clientes (
 );
 
 CREATE TABLE IF NOT EXISTS funcionarios (
-	id_vendedor INT AUTO_INCREMENT PRIMARY KEY,
-    nome_vendedor VARCHAR(100) NOT NULL,
-    email_vendedor VARCHAR(100) NOT NULL UNIQUE,
-    senha_vendedor CHAR(60) NOT NULL
+	id_funcionario INT AUTO_INCREMENT PRIMARY KEY,
+    nome_funcionario VARCHAR(100) NOT NULL,
+    email_funcionario VARCHAR(100) NOT NULL UNIQUE,
+    senha_funcionario CHAR(60) NOT NULL
 );
+
+INSERT INTO funcionarios (nome_funcionario, email_funcionario, senha_funcionario)
+VALUES ('davi','davi@gmail.com','1357');
 
 CREATE TABLE IF NOT EXISTS livros (
 	id_livro INT AUTO_INCREMENT PRIMARY KEY,
@@ -31,7 +47,7 @@ CREATE TABLE IF NOT EXISTS livros (
     alugado_livro BOOLEAN
 );
 
-CREATE TABLE alugueis (
+CREATE TABLE IF NOT EXISTS alugueis (
     id_aluguel INT AUTO_INCREMENT PRIMARY KEY,
     id_cliente INT NOT NULL,
     id_livro INT NOT NULL,

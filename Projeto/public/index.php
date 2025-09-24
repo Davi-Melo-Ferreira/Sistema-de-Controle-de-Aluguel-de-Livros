@@ -14,7 +14,7 @@ if (!isset($_SESSION['usuario'])){
 <body>
     <h1>Vila-Leste</h1>
     <form method="POST">
-        <input type="submit" name="adicionar" value="Adicionar">
+        <input type="submit" name="cliente" value="Clientes">
 
         <input type="submit" name="listar" value="Livros">
 
@@ -27,8 +27,8 @@ if (!isset($_SESSION['usuario'])){
         session_destroy();
         header("Location: ../api/login.php");
     }
-    if (isset($_POST['adicionar'])){
-        header("Location: ../php_visual/cadastrar_livro.php");
+    if (isset($_POST['cliente'])){
+        header("Location: ../php_visual/clientes.php");
     }
     if (isset($_POST['listar'])){
         header("Location: ../php_visual/listar_livros.php");

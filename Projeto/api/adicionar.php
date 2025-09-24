@@ -44,5 +44,5 @@ if ($stmt->execute()) {
 
 $stmt->close();
 $conn->close();
-header("Location: ../public/index.php");
+header("Location: ../php_visual/listar_livros.php");
 ?>
