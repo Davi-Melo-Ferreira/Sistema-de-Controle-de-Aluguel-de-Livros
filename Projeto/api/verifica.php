@@ -15,10 +15,8 @@ if ($user = $result->fetch_assoc()) {
     $_SESSION['usuario'] = $user['nome_funcionario'];
     header("Location: ../public/index.php");
     exit;
-    // Ou use header("Location: ../public/index.php"); exit; se não for AJAX
 } else {
-    echo "<p>Usuário ou senha inválidos. Tente novamente.</p>";
-    echo "<a href='login.php'>Voltar para a página de login</a>";
+    echo json_encode(['sucesso' => false]);
     session_destroy();
 }
 ?>

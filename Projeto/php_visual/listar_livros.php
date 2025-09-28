@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Lista de Livros</title>
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
   <h1>Livros</h1>
@@ -50,35 +51,51 @@
           <button type="submit" name="cadastrar">Adicionar</button>
       </div>
   </form>
-  <ul id="lista-livros"></ul>
+  <table border="1" cellpadding="5" cellspacing="0" id="tabela-livros">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Valor</th>
+        <th>Editora</th>
+        <th>Ano</th>
+        <th>Idioma</th>
+        <th>Autor</th>
+        <th>Alugado</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody id="corpo-livros"></tbody>
+  </table>
   <button type="button" onclick="window.location.href='../public/index.php'">Voltar</button>
 
   <script>
     fetch("../api/listar.php")
       .then(response => response.json())
       .then(data => {
-        const lista = document.getElementById("lista-livros");
+        const corpo = document.getElementById("corpo-livros");
+        corpo.innerHTML = '';
         data.forEach(livro => {
-          const li = document.createElement("li");
+          const tr = document.createElement("tr");
           if (livro.alugado_livro == 1){
-              li.style.textDecoration = 'line-through';
+              tr.style.textDecoration = 'line-through';
           }
-          li.textContent = `
-          - ID: ${livro.id_livro}
-          - Nome: ${livro.nome_livro}
-          - Valor: R$${livro.valor_livro}
-          - Editora: ${livro.editora_livro}
-          - Ano: ${livro.ano_livro}
-          - Idioma: ${livro.idioma_livro}
-          - Autor: ${livro.autor_livro}
-          - Alugado: ${livro.alugado_livro ? 'Sim' : 'Não'}`;
-
-
+          tr.innerHTML = `
+            <td>${livro.id_livro}</td>
+            <td>${livro.nome_livro}</td>
+            <td>R$${livro.valor_livro}</td>
+            <td>${livro.editora_livro}</td>
+            <td>${livro.ano_livro}</td>
+            <td>${livro.idioma_livro}</td>
+            <td>${livro.autor_livro}</td>
+            <td>${livro.alugado_livro ? 'Sim' : 'Não'}</td>
+            <td></td>
+          `;
           // Botão Alugar
           const btnAlugar = document.createElement("button");
           if (livro.alugado_livro == 1){
               btnAlugar.textContent = "Indisponível";
-              btnAlugar.setAttribute('type', 'button');
+              btnAlugar.setAttribute('class', 'btn-dark white');
           } else{
               btnAlugar.textContent = "Alugar";
               btnAlugar.onclick = () => {
@@ -87,8 +104,6 @@
                 }
               };
           }
-          
-
           // Botão Editar
           const btnEditar = document.createElement("button");
           btnEditar.textContent = "Editar";
@@ -97,7 +112,6 @@
               window.location.href = `editar_livro.php?id=${livro.id_livro}`;
             }
           };
-
           // Botão Deletar
           const btnDeletar = document.createElement("button");
           btnDeletar.textContent = "Deletar";
@@ -113,21 +127,21 @@
               .then(response => response.json())
               .then(result => {
                 if (result.success) {
-                  li.remove();
+                  tr.remove();
                 } else {
                   alert("Erro ao deletar livro: " + (result.message || "Tente novamente."));
                 }
               })
-              .catch(() => {
-                alert("Erro de conexão ao deletar livro.");
+              .catch((error) => {
+                alert("Erro de conexão ao deletar livro: " + error);
+                console.log(error);
               });
             }
           };
-
-          li.appendChild(btnAlugar);
-          li.appendChild(btnEditar);
-          li.appendChild(btnDeletar);
-          lista.appendChild(li);
+          tr.querySelector('td:last-child').appendChild(btnAlugar);
+          tr.querySelector('td:last-child').appendChild(btnEditar);
+          tr.querySelector('td:last-child').appendChild(btnDeletar);
+          corpo.appendChild(tr);
         });
       })
       .catch(error => console.error("Erro ao buscar livros:", error));

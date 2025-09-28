@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Livro</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <h1>Editar Livro</h1>
@@ -21,14 +22,16 @@
                 $stmt->execute();
                 $result = $stmt->get_result();
                 if ($livro = $result->fetch_assoc()) {
-                    echo " - Id: ".$livro['id_livro'];
-                    echo " - Nome: ".$livro['nome_livro'];
-                    echo " - Valor: R$".$livro['valor_livro'];
-                    echo " - Editora: ".$livro['editora_livro'];
-                    echo " - Ano: ".$livro['ano_livro'];
-                    echo " - Idioma: ".$livro['idioma_livro'];
-                    echo " - Autor: ".$livro['autor_livro'];
-                    echo " - Alugado: ".($livro['alugado_livro'] ? 'Sim' : 'Não');
+                    echo '<table border="1">'
+                        . '<tr><th>Campo</th><th>Valor</th></tr>'
+                        . '<tr><td>Id</td><td>' . $livro['id_livro'] . '</td></tr>'
+                        . '<tr><td>Nome</td><td>' . htmlspecialchars($livro['nome_livro']) . '</td></tr>'
+                        . '<tr><td>Valor</td><td>R$' . $livro['valor_livro'] . '</td></tr>'
+                        . '<tr><td>Editora</td><td>' . htmlspecialchars($livro['editora_livro']) . '</td></tr>'
+                        . '<tr><td>Idioma</td><td>' . htmlspecialchars($livro['idioma_livro']) . '</td></tr>'
+                        . '<tr><td>Autor</td><td>' . htmlspecialchars($livro['autor_livro']) . '</td></tr>'
+                        . '<tr><td>Alugado</td><td>' . ($livro['alugado_livro'] ? 'Sim' : 'Não') . '</td></tr>'
+                        . '</table>';
                 } else {
                     echo "Livro não encontrado.";
                 }

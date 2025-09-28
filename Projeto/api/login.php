@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <h2>Login</h2>
@@ -14,6 +15,17 @@
 
             <label for="senha">Senha:</label><br>
             <input type="password" id="senha" name="senha" required><br>
+
+            <p id="verificacao" name="verificacao"></p>
+            <script>
+                const response = await fetch("verifica.php");
+                const data = await response.json();
+                if (data.sucesso) {
+                    window.location.href = 'index.php';
+                } else {
+                    document.getElementById('verificacao');
+                }
+            </script>
 
             <input type="submit" name="enviar" value="Entrar"><br>
         </form>

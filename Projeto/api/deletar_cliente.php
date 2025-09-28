@@ -1,5 +1,4 @@
 <?php
-header('Content-Type: application/json');
 include "../conexao/conexao.php";
 
 $input = json_decode(file_get_contents("php://input"), true);
@@ -11,7 +10,7 @@ if (!isset($input["id"]) || !is_numeric($input["id"])) {
 
 $id = (int)$input["id"];
 
-$stmt = $conn->prepare("DELETE FROM livros WHERE id_livro = ?");
+$stmt = $conn->prepare("DELETE FROM clientes WHERE id_cliente = ?");
 $stmt->bind_param("i", $id);
 
 if ($stmt->execute()) {

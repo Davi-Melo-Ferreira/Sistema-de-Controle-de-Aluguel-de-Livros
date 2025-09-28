@@ -1,16 +1,3 @@
--- <?php
---     include "../conexao/conexao.php";
---     header('Content-Type: application/json');
-
---     $stmt = $conn->prepare("
---     SELECT * FROM livros
---     ");
---     $stmt->execute();
-
---     $stmt->close();
---     $conn->close();
--- ?>
-
 -- DROP database davi_livraria_db;
 
 CREATE DATABASE IF NOT EXISTS davi_livraria_db
