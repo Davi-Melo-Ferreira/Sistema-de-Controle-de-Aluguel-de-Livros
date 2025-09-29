@@ -13,6 +13,9 @@ CREATE TABLE IF NOT EXISTS clientes (
     endereco_cliente VARCHAR(100) NOT  NULL
 );
 
+INSERT INTO clientes (nome_cliente, email_cliente, endereco_cliente)
+VALUES ('davi','davi@gmail.com','rua pinto alves');
+
 CREATE TABLE IF NOT EXISTS funcionarios (
 	id_funcionario INT AUTO_INCREMENT PRIMARY KEY,
     nome_funcionario VARCHAR(100) NOT NULL,
@@ -38,11 +41,14 @@ CREATE TABLE alugueis (
     id_aluguel INT AUTO_INCREMENT PRIMARY KEY,
     id_cliente INT NOT NULL,
     id_livro INT NOT NULL,
-    data_aluguel TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    data_aluguel DATE DEFAULT (CURDATE()) NOT NULL,
     prazo_devolucao DATE NOT NULL,
     data_devolucao DATE NULL,
-    taxa_atraso DECIMAL(10,2) NOT NULL DEFAULT 5.00,
+    taxa_atraso DECIMAL(10,2) NOT NULL DEFAULT 0.00,
     FOREIGN KEY (id_livro) REFERENCES livros(id_livro) ON DELETE CASCADE,
     FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)ON DELETE CASCADE,
-    CHECK (data_devolucao IS NULL OR data_devolucao >= data_aluguel)
+    CHECK (data_devolucao IS NULL OR data_devolucao >= DATE(data_aluguel))
 );
+
+use davi_livraria_db;
+SELECT * FROM clientes;
