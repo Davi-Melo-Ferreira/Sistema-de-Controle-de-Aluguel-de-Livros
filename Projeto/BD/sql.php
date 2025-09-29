@@ -44,7 +44,7 @@
             data_aluguel TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
             prazo_devolucao DATE NOT NULL,
             data_devolucao DATE NULL,
-            taxa_atraso DECIMAL(10,2) NOT NULL DEFAULT 5.00,
+            taxa_atraso DECIMAL(10,2) NOT NULL DEFAULT 0.00,
             FOREIGN KEY (id_livro) REFERENCES livros(id_livro),
             FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
             CHECK (data_devolucao IS NULL OR data_devolucao >= data_aluguel)

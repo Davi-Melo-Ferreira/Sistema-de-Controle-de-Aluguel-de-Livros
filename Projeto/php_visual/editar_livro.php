@@ -43,7 +43,7 @@
             ?>
             </a>
         <!-- Formulário para editar registro na tabela de livros -->
-        <form id="bookForm" method="POST" action="../api/editar.php" novalidate>
+        <form id="bookForm" method="POST" action="../api/editar/editar_livro.php" novalidate>
             <div>
                 <label for="campo">Campo:</label>
                 <input id="campo" name="campo" type="text" required />

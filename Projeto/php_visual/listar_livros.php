@@ -8,7 +8,7 @@
 <body>
   <h1>Livros</h1>
   <!-- Formulário para inserir registro na tabela de livros -->
-  <form id="bookForm" method="POST" action="../api/adicionar.php" novalidate>
+  <form id="bookForm" method="POST" action="../api/adicionar/adicionar_livro.php" novalidate>
     <h3>Adicionar Livro</h3>
       <!-- nome -->
       <div>
@@ -70,7 +70,7 @@
   <button type="button" onclick="window.location.href='../public/index.php'">Voltar</button>
 
   <script>
-    fetch("../api/listar.php")
+    fetch("../api/listar/listar_livros.php")
       .then(response => response.json())
       .then(data => {
         const corpo = document.getElementById("corpo-livros");
@@ -117,7 +117,7 @@
           btnDeletar.textContent = "Deletar";
           btnDeletar.onclick = () => {
             if (confirm("Tem certeza que deseja deletar este livro?")) {
-              fetch("../api/deletar.php", {
+              fetch("../api/deletar/deletar_livro.php", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json"
@@ -132,10 +132,6 @@
                   alert("Erro ao deletar livro: " + (result.message || "Tente novamente."));
                 }
               })
-              .catch((error) => {
-                alert("Erro de conexão ao deletar livro: " + error);
-                console.log(error);
-              });
             }
           };
           tr.querySelector('td:last-child').appendChild(btnAlugar);

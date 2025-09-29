@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS livros (
     alugado_livro BOOLEAN
 );
 
-CREATE TABLE IF NOT EXISTS alugueis (
+CREATE TABLE alugueis (
     id_aluguel INT AUTO_INCREMENT PRIMARY KEY,
     id_cliente INT NOT NULL,
     id_livro INT NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS alugueis (
     prazo_devolucao DATE NOT NULL,
     data_devolucao DATE NULL,
     taxa_atraso DECIMAL(10,2) NOT NULL DEFAULT 5.00,
-    FOREIGN KEY (id_livro) REFERENCES livros(id_livro),
-    FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
+    FOREIGN KEY (id_livro) REFERENCES livros(id_livro) ON DELETE CASCADE,
+    FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)ON DELETE CASCADE,
     CHECK (data_devolucao IS NULL OR data_devolucao >= data_aluguel)
 );

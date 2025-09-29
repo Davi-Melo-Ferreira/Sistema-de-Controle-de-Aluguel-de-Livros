@@ -17,7 +17,7 @@ $livros = $conn->query("SELECT id_livro, nome_livro FROM livros ORDER BY nome_li
 </head>
 <body>
   <h1>Novo Aluguel</h1>
-  <form action="../api/registrar_aluguel.php" method="POST">
+  <form action="../api/adicionar/registrar_aluguel.php" method="POST">
     <label for="id_cliente">Cliente:</label>
     <select name="id_cliente" id="id_cliente" required>
       <option value="">Selecione um cliente</option>
@@ -60,7 +60,7 @@ $livros = $conn->query("SELECT id_livro, nome_livro FROM livros ORDER BY nome_li
     <script>
     // Busca todos os registros de alugueis
     async function carregarRegistros() {
-      const res = await fetch('../api/registros.php');
+      const res = await fetch('../api/listar/listar_registros.php');
       const registros = await res.json();
       const corpo = document.getElementById('corpo-tabela');
       corpo.innerHTML = '';
@@ -80,11 +80,16 @@ $livros = $conn->query("SELECT id_livro, nome_livro FROM livros ORDER BY nome_li
           const btnRegistrar = document.createElement('button');
           btnRegistrar.textContent = 'Registrar Devolução';
           btnRegistrar.onclick = async () => {
-            await fetch('../api/registrar_taxa.php', {
+            const res = await fetch('../api/editar/registrar_taxa.php', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ id_aluguel: registro.id_aluguel })
             });
+            const data = await res.json();
+            if (!data.success) {
+              alert('Erro ao registrar devolução: ' + (data.error || 'Erro desconhecido'));
+              return;
+            }
             carregarRegistros();
           };
           tr.querySelector('td:last-child').appendChild(btnRegistrar);

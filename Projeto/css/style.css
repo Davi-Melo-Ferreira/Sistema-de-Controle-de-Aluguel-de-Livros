@@ -1,8 +1,26 @@
+body::before {
+	content: "";
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: -1;
+	background-image: url('../img/landscape-shot-brooklyn-bridge-new-usa-with-gray-gloomy-sky.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	filter: blur(6px);
+}
 
 body {
 	font-family: 'Segoe UI', Arial, sans-serif;
-	background: #f6f8fa;
-	margin: 10%;
+	/* background: #f9f9f9; */
+	background-image: url('../img/landscape-shot-brooklyn-bridge-new-usa-with-gray-gloomy-sky.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	margin: 0;
 	padding: 0;
 	color: #222;
 	min-height: 100vh;
@@ -11,7 +29,12 @@ body {
 	justify-content: flex-start;
 }
 
+h1{
+	font-size: 70px;
+}
+
 h1, h2, h3 {
+	
 	color: #2c3e50;
 	text-align: center;
 	margin-top: 24px;
@@ -44,7 +67,7 @@ form input, form select {
 }
 
 form button, button, input[type="submit"] {
-	background: #1976d2;
+	background: #d25d19;
 	color: #fff;
 	border: none;
 	border-radius: 4px;
@@ -59,7 +82,7 @@ form button, button, input[type="submit"] {
 }
 
 form button:hover, button:hover, input[type="submit"]:hover {
-	background: #125ea7;
+	background: #aa5a0f;
 }
 
 table {
@@ -79,7 +102,7 @@ th, td {
 }
 
 th {
-	background: #1976d2;
+	background: #d25d19;
 	color: #fff;
 	font-weight: 600;
 }

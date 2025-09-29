@@ -8,7 +8,7 @@
 <body>
   <h1>clientes</h1>
   <!-- Formulário para inserir registro na tabela de clientes -->
-  <form id="bookForm" method="POST" action="../api/adicionar_clientes.php" novalidate>
+  <form id="bookForm" method="POST" action="../api/adicionar/adicionar_clientes.php" novalidate>
     <h3>Adicionar cliente</h3>
       <!-- nome -->
       <div>
@@ -47,7 +47,7 @@
   <button type="button" onclick="window.location.href='../public/index.php'">Voltar</button>
 
   <script>
-    fetch("../api/clientes.php")
+    fetch("../api/listar/listar_clientes.php")
       .then(response => response.json())
       .then(data => {
         const corpo = document.getElementById("corpo-clientes");
@@ -61,12 +61,22 @@
             <td>${cliente.endereco_cliente}</td>
             <td></td>
           `;
+
+          // Botão Editar
+          const btnEditar = document.createElement("button");
+          btnEditar.textContent = "Editar";
+          btnEditar.onclick = () => {
+            if (confirm("Tem certeza que deseja editar este cliente?")) {
+              window.location.href = `editar_cliente.php?id=${cliente.id_cliente}`;
+            }
+          };
+
           // Botão Deletar
           const btnDeletar = document.createElement("button");
           btnDeletar.textContent = "Deletar";
           btnDeletar.onclick = () => {
             if (confirm("Tem certeza que deseja deletar este cliente?")) {
-              fetch("../api/deletar_cliente.php", {
+              fetch("../api/deletar/deletar_cliente.php", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json"
@@ -86,6 +96,7 @@
               });
             }
           };
+          tr.querySelector('td:last-child').appendChild(btnEditar);
           tr.querySelector('td:last-child').appendChild(btnDeletar);
           corpo.appendChild(tr);
         });
