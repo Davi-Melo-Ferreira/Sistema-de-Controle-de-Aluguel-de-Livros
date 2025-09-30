@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+  <?php include '../php_visual/nav.php'; ?>
   <h1>Livros</h1>
   <!-- Formulário para inserir registro na tabela de livros -->
   <form id="bookForm" method="POST" action="../api/adicionar/adicionar_livro.php" novalidate>
@@ -142,5 +143,6 @@
       })
       .catch(error => console.error("Erro ao buscar livros:", error));
   </script>
+  <?php include '../php_visual/footer.php'; ?>
 </body>
 </html>

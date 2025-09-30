@@ -16,6 +16,7 @@ $livros = $conn->query("SELECT id_livro, nome_livro FROM livros ORDER BY nome_li
   <title>Cadastrar Aluguel</title>
 </head>
 <body>
+  <?php include '../php_visual/nav.php'; ?>
   <h1>Novo Aluguel</h1>
   <form action="../api/adicionar/registrar_aluguel.php" method="POST">
     <label for="id_cliente">Cliente:</label>
@@ -100,5 +101,6 @@ $livros = $conn->query("SELECT id_livro, nome_livro FROM livros ORDER BY nome_li
     carregarRegistros();
     </script>
   </main>
+  <?php include '../php_visual/footer.php'; ?>
 </body>
 </html>

@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+  <?php include '../php_visual/nav.php'; ?>
   <h1>clientes</h1>
   <!-- Formulário para inserir registro na tabela de clientes -->
   <form id="bookForm" method="POST" action="../api/adicionar/adicionar_clientes.php" novalidate>
@@ -103,5 +104,6 @@
       })
       .catch(error => console.error("Erro ao buscar clientes:", error));
   </script>
+  <?php include '../php_visual/footer.php'; ?>
 </body>
 </html>

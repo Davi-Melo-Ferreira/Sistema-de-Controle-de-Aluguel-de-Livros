@@ -13,6 +13,7 @@ if (!isset($_SESSION['usuario'])){
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+    <?php include '../php_visual/nav.php'; ?>
     <h1>Vila-Leste</h1>
     <form method="POST">
         <input type="submit" name="cliente" value="Clientes">
@@ -38,5 +39,6 @@ if (!isset($_SESSION['usuario'])){
         header("Location: ../php_visual/alugar_livro.php");
     }
     ?>
+    <?php include '../php_visual/footer.php'; ?>
 </body>
 </html>

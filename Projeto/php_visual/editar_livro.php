@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+    <?php include '../php_visual/nav.php'; ?>
     <h1>Editar Livro</h1>
     <main>
         <div id="dadosLivro">
@@ -62,5 +63,6 @@
         </form>
         <button type="button" onclick="window.location.href='../public/index.php'">Voltar</button>
     </main>
+    <?php include '../php_visual/footer.php'; ?>
 </body>
 </html>
