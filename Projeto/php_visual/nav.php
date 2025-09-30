@@ -10,10 +10,18 @@
 </nav>
 <style>
 .sanduba-nav {
-	position: relative;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
 	background: #333;
 	color: #fff;
-	padding: 10px 0;
+	padding: 15px 0;
+	z-index: 1000;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+body {
+	padding-top: 60px !important;
 }
 .menu-icon {
 	font-size: 2em;
